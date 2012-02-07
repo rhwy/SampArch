@@ -12,7 +12,7 @@ namespace SampArch.Infrastructure.EF
     {
         public SampArchDbInitializer()
         {
-            this.AddCommand(GetAspNetSqlMemberShipFromResources());
+            //this.AddCommand(GetAspNetSqlMemberShipFromResources());
         }
 
         public string GetAspNetSqlMemberShipFromResources()

@@ -17,11 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampArch.Bootstrapper", "Sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampArch.Utilities", "Src\SampArch.Utilities\SampArch.Utilities.csproj", "{1DAF2C34-DC01-486A-A9FE-5570F54239E2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Notes", "_Notes", "{BCE972FD-27CB-4F16-8E06-EA448E06F269}"
-	ProjectSection(SolutionItems) = preProject
-		Bootstrapper.txt = Bootstrapper.txt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{73B2C03B-E697-4CD6-8444-D2D9E8107A31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampArchi.Infrastructure.Azure", "Src\SampArchi.Infrastructure.Azure\SampArchi.Infrastructure.Azure.csproj", "{67267879-7802-4FFE-AECC-28AE2AD95CF2}"
