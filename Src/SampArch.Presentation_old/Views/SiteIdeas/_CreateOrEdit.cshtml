@@ -1,0 +1,36 @@
+@model SampArch.Domain.Ideas.Idea
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CreationDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.CreationDate)
+    @Html.ValidationMessageFor(model => model.CreationDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Title)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Title)
+    @Html.ValidationMessageFor(model => model.Title)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Detail)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Detail)
+    @Html.ValidationMessageFor(model => model.Detail)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Author)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Author)
+    @Html.ValidationMessageFor(model => model.Author)
+</div>
+

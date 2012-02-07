@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    @Html.Partial("_HtmlHead")
+</head>
+
+<body>
+    @Html.Partial("_TopNavBar")
+
+    <div class="container">
+        
+        @RenderBody() 
+        
+        <hr />
+
+        <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>Project initiated by ArtOfNet (c) 2011-2012. Sources respectively owned by their contributors</p>
+        <p>Contributors : Rui Carvalho, Julien Corioland</p>
+        <p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+       </footer>
+
+    </div>
+
+    
+</body>
+</html>

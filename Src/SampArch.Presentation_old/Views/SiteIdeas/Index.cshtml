@@ -1,0 +1,61 @@
+@model IEnumerable<SampArch.Presentation.Area.Ideas.Models.IdeaInList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="hero-unit">
+    <h1>Ideas</h1>
+    <p>Espace de suggestions. Soumettez des idées pour de nouveaux articles</p>
+    <p><a class="btn btn-primary btn-large">Nouvelle idée</a></p>
+</div>
+
+  <div class="row"> 
+<div class="btn-group">
+    <span>Sort : </span>
+    <a class="btn" href="#">Votes up</a>
+    <a class="btn" href="#">Votes down</a>
+    <a class="btn" href="#">Comments</a>
+    <a class="btn" href="#">Date</a>
+    <a class="btn" href="#">Date desc</a>
+</div>
+</div>
+@foreach (var idea in Model)
+{
+   <div class="row">  
+        <div class="span8">
+            @idea.Title
+        </div> 
+        <div class="span4">
+            <div class="btn-group open">
+              <a class="btn btn-primary dropdown-toggle" href="#" data-toggle="dropdown">Action <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#">Edit</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Delete</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4">
+            by @idea.Author, published : @idea.CreationDate.ToShortDateString()
+        </div>
+        <div class="span4">
+            Comments : @idea.CommentsCount , Votes: [Up: @idea.VotesUp, Down: @idea.VotesDown]
+        </div>
+        <div class="span4">
+            @if(idea.Tags.Count()>0)
+            {
+                foreach (string tag in idea.Tags)
+                {
+                    @(tag+" ")
+                }
+                
+            }
+        </div>
+
+    </div>
+    <hr />
+}

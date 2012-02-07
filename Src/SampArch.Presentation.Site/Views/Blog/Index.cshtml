@@ -1,0 +1,47 @@
+@model IEnumerable<SampArch.Domain.Blog.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="hero-unit">
+    <h1>Posts</h1>
+    <p>Retrouvez nos articles ici</p>
+    
+</div>
+
+
+@foreach (var post in Model)
+{
+    <hr />
+   <div class="row">  
+        <div class="span8">
+            <h2><a href="@Url.Action("Details", "Blog", new { Area = "Blog", id = post.Id })">@post.Title</a></h2>
+        </div> 
+        <div class="span4">
+            @if(post.Tags.Count()>0)
+            {
+                foreach (string tag in post.Tags)
+                {
+                    var t = new SampArch.Domain.Common.Tag(tag);
+                    @Html.DisplayFor(m => t)
+                }
+            }
+        </div>
+    </div>
+     <div class="row">
+        <div class="span10">
+        @Html.Techdays().ToMarkdown(post.Content)
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6">
+            by @post.Author, 
+        </div>
+        <div class="span6">
+            published : @post.PublishDate.ToShortDateString()
+        </div>
+    </div>
+    
+    <hr />
+}

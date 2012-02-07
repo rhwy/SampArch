@@ -1,0 +1,22 @@
+﻿<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="@Url.Action("Start","Home")">Techdays 2012 ASP.NET MVC</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="@Url.Action("Start", "Home", new { Area = "" })">Home</a></li>
+              <li><a href="@Url.Action("Index","SiteIdeas",new { Area = "Ideas"})">Ideas</a></li>
+              <li><a href="@Url.Action("Index","Blog",new { Area = "Blog"})">Blog</a></li>
+              <li><a href="@Url.Action("SendMessage", "Contact", new { Area = "" })">Contact</a></li>
+              <li><a href="@Url.Action("About", "Home", new { Area = "" })">About</a></li>
+            </ul>
+            <p class="navbar-text pull-right"> @Html.Partial("_LogOnPartial")</p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>

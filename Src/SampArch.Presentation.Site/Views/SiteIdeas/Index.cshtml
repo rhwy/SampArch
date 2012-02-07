@@ -1,0 +1,69 @@
+@model IEnumerable<SampArch.Presentation.Area.Ideas.Models.IdeaInList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="hero-unit">
+    <h1>Ideas</h1>
+    <p>Espace de suggestions. Soumettez des idées pour de nouveaux articles</p>
+    <p><a class="btn btn-primary btn-large" href="@Url.Action("Create","SiteIdeas",new {Area="Ideas"})">Nouvelle idée</a></p>
+</div>
+
+  <div class="row"> 
+<div class="btn-group">
+    
+    <a class="btn" href="@Url.Action("SortByVotesUp","SiteIdeas",new {Area="Ideas"})">Votes up</a>
+    <a class="btn" href="@Url.Action("SortByVotesDown", "SiteIdeas", new { Area = "Ideas" })">Votes down</a>
+    <a class="btn" href="@Url.Action("SortByComments", "SiteIdeas", new { Area = "Ideas" })">Comments</a>
+    <a class="btn" href="@Url.Action("SortByDate", "SiteIdeas", new { Area = "Ideas" })">Date</a>
+    <a class="btn" href="@Url.Action("SortByDateDesc", "SiteIdeas", new { Area = "Ideas" })">Date desc</a>
+    <a class="btn" href="@Url.Action("SortByTitle", "SiteIdeas", new { Area = "Ideas" })">Title</a>
+
+</div>
+</div>
+
+<div class="row">
+<p class="pull-right"><a href="@Url.Action("DownloadCsv","IdeasService",new {Area="Ideas"})">Download</a></p>
+</div>
+
+@foreach (var idea in Model)
+{
+    <hr />
+   <div class="row">  
+        <div class="span8">
+            <h2>@idea.Title</h2>
+        </div> 
+        <div class="span4">
+            <div class="btn-group">
+              <a class="btn btn-primary dropdown-toggle" href="#" data-toggle="dropdown">Action <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Details","SiteIdeas",new {Area="Ideas", id=idea.Id})">View</a></li>
+                <li><a href="@Url.Action("Edit", "SiteIdeas", new { Area = "Ideas", id=idea.Id })">Edit</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("Delete", "SiteIdeas", new { Area = "Ideas", id=idea.Id })">Delete</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span4">
+            by @idea.Author, published : @idea.CreationDate.ToShortDateString()
+        </div>
+        <div class="span4">
+            Comments : @idea.CommentsCount , Votes: [<i class="icon-arrow-up"></i> @idea.VotesUp, <i class="icon-arrow-down"></i> @idea.VotesDown]
+        </div>
+        <div class="span4">
+            @if(idea.Tags.Count()>0)
+            {
+                foreach (string tag in idea.Tags)
+                {
+                    var t = new SampArch.Domain.Common.Tag(tag);
+                    @Html.DisplayFor(m => t)
+                }
+            }
+        </div>
+
+    </div>
+    <hr />
+}

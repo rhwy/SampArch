@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Start" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildProjectDirectory)\Build.tasks" />
+	<UsingTask TaskName="ILMerge" AssemblyFile="$(MSBuildProjectDirectory)\ILMerge.MSBuild.Tasks.dll" />
+	<!--Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/-->
+	<PropertyGroup>
+		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+		<ProjectName>SaBlog</ProjectName>
+		<ProjectRoot>$(MSBuildProjectDirectory)\..</ProjectRoot>
+		<ProjectTest>$(ProjectRoot)\Test</ProjectTest>
+		<ProjectSrc>$(ProjectRoot)\Src</ProjectSrc>
+		<ProjectBinCore>$(ProjectSrc)\SaBlog.Presentation.Core\bin\$(Configuration)</ProjectBinCore>
+		<DropDirectory>$(ProjectRoot)\Bins</DropDirectory>
+		<DropDirectoryAllAssemblies>$(DropDirectory)\AllAssemblies</DropDirectoryAllAssemblies>
+		<DropDirectoryMerged>$(DropDirectory)\Merged</DropDirectoryMerged>
+		<DropDirectoryMergedTemp>$(DropDirectory)\MergedTemp</DropDirectoryMergedTemp>
+		<DropDirectoryLog>$(DropDirectory)\Log</DropDirectoryLog>
+		<ILMergeExe>$(ProjectRoot)\Tools\ILMerge.exe</ILMergeExe>
+		<NugetExe>$(ProjectRoot)\Tools\nuget.exe</NugetExe>
+		<NugetManifest>$(ProjectRoot)\$(ProjectName).nuspec</NugetManifest>
+		<ILMergeFileFinalName>$(DropDirectoryMerged)\$(ProjectName).dll</ILMergeFileFinalName>
+		<ILMergeDirectory>$(DropDirectory)</ILMergeDirectory>
+		<ILMergeIgnoreFile>$(MSBuildProjectDirectory)\ilmerge.ignore.txt</ILMergeIgnoreFile>
+		<DotNet4ReferenceAssemblies>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0</DotNet4ReferenceAssemblies>
+		<LegalFileSource>$(ProjectRoot)\Common\legal.txt</LegalFileSource>
+	</PropertyGroup>
+	  <PropertyGroup>
+      <MajorVersion>1</MajorVersion>
+      <MinorVersion>2</MinorVersion>
+      <VersionStartYear>2011</VersionStartYear>
+      <BuildNumber>$([MSBuild]::Add(1, $([MSBuild]::Subtract($([System.DateTime]::Now.Year), $(VersionStartYear)))))$([System.DateTime]::Now.ToString("Md"))</BuildNumber>
+      <Revision Condition="'$(Revision)' == ''">$(BuildNumber)</Revision>
+      <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).$(Revision)</Version>
+    </PropertyGroup>
+    <ItemGroup>
+	  <!-- add build number to common assembly file (used in all projects) -->
+      <RegexTransform Include="$(ProjectRoot)\Common\CommonAssemblyInfo.cs">
+          <Find>\d+\.\d+\.\d+\.\d+</Find>
+          <ReplaceWith>$(Version)</ReplaceWith>
+      </RegexTransform>
+	  <!-- add build number to nuget manifest --> 
+      <RegexTransform Include="$(NugetManifest)">
+        <Find>&lt;version&gt;\d+\.\d+\.\d+\.\d+&lt;/version&gt;</Find>
+        <ReplaceWith>&lt;version&gt;$(Version)&lt;/version&gt;</ReplaceWith>
+      </RegexTransform>
+	  <LegalInsertTransform Include="$(ProjectRoot)\Src">
+        <LegalSource>$(LegalFileSource)</LegalSource>
+      </LegalInsertTransform>
+    </ItemGroup>
+  
+	  <Target Name="Start" DependsOnTargets="Intro;UpdateVsixVersion;Build;CreateDropDirectories;CopyAllFrameworkAssembliesToDrops;NugetPack">
+    </Target>
+	
+	  <!-- INFO : BUILD ALL Sources -->
+	  <Target Name="Intro">
+		  <Message Text="[Building solution with Version Number $(Version)]" />
+	  </Target>
+  
+	  <Target Name="UpdateVsixVersion" Condition="'$(BuildNumber)' != ''">
+		  <Message Text="Updating Common Assembly info with current build number ($(Version))" />
+		<RegexTransform Items="@(RegexTransform)" />
+    </Target>
+
+    <Target Name="UpdateLegalInfo" Condition="'$(LegalFileSource)' != ''">
+      <Message Text="Updating all cs files with legal information from file $(LegalFileSource)" />
+      <LegalInsertTransform Items="@(LegalInsertTransform)" />
+    </Target>
+  
+	  <Target Name="Build">
+		  <Message Text="Building the Solution." />
+      <MSBuild Projects="$(ProjectRoot)\$(ProjectName).sln" Targets="Build" />
+    </Target>
+	
+	  <!-- INFO : Create,Merge,Copy Resulting binaries -->
+	  <Target Name="CreateDropDirectories">
+          <Message Text="Making the output directories for the compiled output at '$(DropDirectory)'." />
+          <RemoveDir Directories="$(DropDirectory)" Condition="Exists('$(DropDirectory)')" ContinueOnError="True" />
+          <MakeDir Directories="$(DropDirectory)" Condition="!Exists('$(DropDirectory)')" />
+          <MakeDir Directories="$(DropDirectoryAllAssemblies)" Condition="!Exists('$(DropDirectoryAllAssemblies)')" />
+          <MakeDir Directories="$(DropDirectoryMerged)" Condition="!Exists('$(DropDirectoryMerged)')" />
+		  <MakeDir Directories="$(DropDirectoryLog)" Condition="!Exists('$(DropDirectoryLog)')" />
+		  <MakeDir Directories="$(DropDirectoryMergedTemp)" Condition="!Exists('$(DropDirectoryLog)')" />
+    </Target>
+	
+	  <Target Name="CopyAllFrameworkAssembliesToDrops">
+		<ItemGroup>
+              <ProjectBinCoreItems Include="$(ProjectBinCore)\*.dll" />
+        </ItemGroup>
+        <Message Text="Copying the Framework contracts output to $(DropDirectoryAllAssemblies)" />
+		<Copy ContinueOnError="false" SourceFiles="@(ProjectBinCoreItems)" DestinationFiles="@(ProjectBinCoreItems ->'$(DropDirectoryAllAssemblies)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
+	
+	 
+	
+	
+	  <Target Name="NugetPack">
+		  <ItemGroup>
+			  <compiledPackage Include="$(DropDirectory)\$(ProjectName).$(Version).nupkg" />
+		  </ItemGroup>
+		  <Message Text="Preparing a nuget package" />
+		  <Exec Command="&quot;$(NugetExe)&quot; pack &quot;$(NugetManifest)&quot; -o &quot;$(DropDirectory)&quot;" />
+    </Target>	
+</Project>

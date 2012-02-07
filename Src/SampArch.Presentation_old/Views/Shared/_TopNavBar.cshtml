@@ -1,0 +1,23 @@
+﻿<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Techdays 4 MVC</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              @Html.RouteLink("hello", "BlogRoute", new { area = "Blog", controller="Blog", action = "Index" })
+              <li>@Html.ActionLink("Ideas", "Index", "Suggest", new { Area = "Ideas" })</li>
+              <li>@Html.ActionLink("Blog", "Index", "Post", new { Area = "Blog" })</li>
+              <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+              <li>@Html.ActionLink("About", "Index", "Home")</li>
+            </ul>
+            <p class="navbar-text pull-right"> @Html.Partial("_LogOnPartial")</p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,38 @@
+@model SampArch.Domain.Ideas.Idea
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Suggest</legend>
+
+    <div class="display-label">CreationDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.CreationDate)</div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">@Model.Title</div>
+
+    <div class="display-label">Detail</div>
+    <div class="display-field">@Model.Detail</div>
+
+    <div class="display-label">Author</div>
+    <div class="display-field">@Model.Author</div>
+
+    <div class="display-label">Votes</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Votes).ToString()</div>
+
+    <div class="display-label">Comments</div>
+    <div class="display-field">@(Model.Comments == null ? "None" : Model.Comments.Count.ToString())</div>
+
+    <div class="display-label">Tags</div>
+    <div class="display-field">@(Model.Tags == null ? "None" : Model.Tags.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

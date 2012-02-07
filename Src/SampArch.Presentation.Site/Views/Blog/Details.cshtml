@@ -1,0 +1,55 @@
+@model SampArch.Domain.Blog.Post
+@using TipsTricks.Utilities.MvcHelpers;
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="hero-unit">
+    <h1>@Model.Title</h1>
+    
+</div>
+<div class="row">  
+        <div class="span8">
+            @Html.Techdays().ToMarkdown(Model.Content)
+        </div> 
+        <div class="span4">
+            <div class="btn-group">
+              <a class="btn btn-primary dropdown-toggle" href="#" data-toggle="dropdown">Action <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Index","SiteIdeas",new {Area="Ideas"})">Back</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("Edit", "SiteIdeas", new { Area = "Ideas", id = Model.Id })">Edit</a></li>
+                <li><a href="@Url.Action("Delete", "SiteIdeas", new { Area = "Ideas", id = Model.Id })">Delete</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6">
+            by @Model.Author, published : @Model.PublishDate.ToShortDateString()
+        </div>
+       
+        <div class="span6">
+            @if(Model.Tags.Count()>0)
+            {
+                foreach (var tag in Model.Tags)
+                {
+                    @Html.DisplayFor(m => tag)
+                }
+            }
+        </div>
+    
+    </div>
+    <div class="row">
+        @if(Model.Comments.Count()>0)
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <div class="alert alert-info">
+                        @comment.Content
+                    </div>
+                    <div>by @comment.UserName, @comment.PublishDate</div>
+                }
+            }
+    </div>
+
