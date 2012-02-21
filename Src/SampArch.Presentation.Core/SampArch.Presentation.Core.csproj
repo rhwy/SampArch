@@ -34,8 +34,9 @@
     <Reference Include="Mediator, Version=1.0.2123.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Mediator.1.0.2123.0\lib\Mediator.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.2.2.5660, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceStack.Text.3.2.2\lib\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=3.5.3.4351, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ServiceStack.Text.3.5.3\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
