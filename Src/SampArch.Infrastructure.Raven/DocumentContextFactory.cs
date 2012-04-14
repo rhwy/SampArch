@@ -27,24 +27,12 @@ namespace SampArch.Infrastructure.Raven
             }
             return _store;
         }
-        //public IDocumentSession GetContext()
-        //{
-        //    var requestStore = HttpRequestSingleton<EmbeddableDocumentStore>.Instance;
 
-        //    if (!requestStore.IsSet)
-        //    {
-        //        requestStore.Value = new EmbeddableDocumentStore { DataDirectory = Path.Combine(Environment.CurrentDirectory,"Data") };
-        //        requestStore.Value.Conventions.IdentityPartsSeparator = "-";
-        //        if (!_initialized)
-        //        {
-        //            requestStore.Value.Initialize();
-        //        }
-        //    }
-        //    if (requestStore.Value == null)
-        //    {
-        //        return null;
-        //    }
-        //    return requestStore.Value.OpenSession();
-        //}
+
+
+        public IDocumentSession GetSession()
+        {
+            return GetStore().OpenSession();
+        }
     }
 }

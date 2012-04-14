@@ -9,6 +9,7 @@ namespace SampArch.Utilities
     public class HttpRequestSingleton<T>
     {
         private const string KEY = "RequestSingleton";
+        private static readonly object _syncRoot = new object();
 
         private static string _keyRequestType
         {
@@ -43,9 +44,12 @@ namespace SampArch.Utilities
         {
             get
             {
-                if (HttpContext.Current.Items[_keyRequestType] == null)
+                lock (_syncRoot)
                 {
-                    HttpContext.Current.Items[_keyRequestType] = new HttpRequestSingleton<T>();
+                    if (HttpContext.Current.Items[_keyRequestType] == null)
+                    {
+                        HttpContext.Current.Items[_keyRequestType] = new HttpRequestSingleton<T>();
+                    }
                 }
                 return HttpContext.Current.Items[_keyRequestType] as HttpRequestSingleton<T>;
             }

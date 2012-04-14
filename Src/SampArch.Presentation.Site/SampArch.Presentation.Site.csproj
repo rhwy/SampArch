@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotless.Core, Version=1.3.0.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\dotless.1.3.0.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
     </Reference>
@@ -51,9 +55,9 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.5.3.4351, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Text, Version=3.6.9.2502, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\ServiceStack.Text.3.5.3\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\packages\ServiceStack.Text.3.6.9\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -94,6 +98,138 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\less\bootstrap\bootstrap.css" />
+    <Content Include="Content\less\bootstrap\bootstrap1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\forms.css" />
+    <Content Include="Content\less\bootstrap\forms1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>forms.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\mixins.css" />
+    <Content Include="Content\less\bootstrap\mixins1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\patterns.css" />
+    <Content Include="Content\less\bootstrap\patterns1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>patterns.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\reset.css" />
+    <Content Include="Content\less\bootstrap\reset1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reset.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\scaffolding.css" />
+    <Content Include="Content\less\bootstrap\scaffolding1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>scaffolding.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\tables.css" />
+    <Content Include="Content\less\bootstrap\tables1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\type.css" />
+    <Content Include="Content\less\bootstrap\type1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>type.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap\variables.css" />
+    <Content Include="Content\less\bootstrap\variables1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\bootstrap.css" />
+    <Content Include="Content\less\metro\bootstrap1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\colours.css" />
+    <Content Include="Content\less\metro\colours1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>colours.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\layouts.css" />
+    <Content Include="Content\less\metro\layouts1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>layouts.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\metro.css" />
+    <Content Include="Content\less\metro\metro1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>metro.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\metroblog.css" />
+    <Content Include="Content\less\metro\metroblog1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>metroblog.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\mixins.css" />
+    <Content Include="Content\less\metro\mixins1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\pivot.css" />
+    <Content Include="Content\less\metro\pivot1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pivot.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\progress-bars.css" />
+    <Content Include="Content\less\metro\progress-bars1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>progress-bars.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\reset.css" />
+    <Content Include="Content\less\metro\reset1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reset.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\tiles.css" />
+    <Content Include="Content\less\metro\tiles1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tiles.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\type.css" />
+    <Content Include="Content\less\metro\type1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>type.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\utilities.css" />
+    <Content Include="Content\less\metro\utilities1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>utilities.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\metro\variables.css" />
+    <Content Include="Content\less\metro\variables1.css">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -249,6 +385,96 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\less\bootstrap\bootstrap.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>bootstrap1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\forms.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>forms1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\mixins.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>mixins1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\patterns.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>patterns1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\reset.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>reset1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\scaffolding.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>scaffolding1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\tables.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>tables1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\type.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>type1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\bootstrap\variables.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>variables1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\bootstrap.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>bootstrap1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\colours.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>colours1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\layouts.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>layouts1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\metro.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>metro1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\metroblog.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>metroblog1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\mixins.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>mixins1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\pivot.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>pivot1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\progress-bars.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>progress-bars1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\reset.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>reset1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\tiles.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>tiles1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\type.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>type1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\utilities.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>utilities1.css</LastGenOutput>
+    </None>
+    <None Include="Content\less\metro\variables.less">
+      <Generator>LessGenerator</Generator>
+      <LastGenOutput>variables1.css</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

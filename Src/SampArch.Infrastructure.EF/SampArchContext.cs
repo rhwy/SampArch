@@ -7,6 +7,7 @@ using SampArch.Domain.Ideas;
 using SampArch.Domain.Blog;
 using Efmap.Helpers;
 using SampArch.Domain.Common;
+using System.Data.Entity.Infrastructure;
 
 namespace SampArch.Infrastructure.EF
 {
@@ -27,6 +28,7 @@ namespace SampArch.Infrastructure.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             this.AutoLoadForThisContext(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }

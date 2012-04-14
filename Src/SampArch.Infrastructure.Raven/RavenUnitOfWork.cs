@@ -4,32 +4,41 @@ using System.Linq;
 using System.Text;
 using SampArch.Domain;
 using Raven.Client.Embedded;
+using Raven.Client;
 
 namespace SampArch.Infrastructure.Raven
 {
     public class RavenUnitOfWork : IUnitOfWork
     {
-        
+        private IDocumentStore _documentStore;
+        private IDocumentSession _session;
+
+        public RavenUnitOfWork(IDocumentContextFactory _factory)
+        {
+            _documentStore = _factory.GetStore();
+        }
 
         public void Begin()
         {
-            var documentStore = new EmbeddableDocumentStore { DataDirectory = "~/App_Data/" };
-            
+            _session = _documentStore.OpenSession();
         }
 
         public void Commit()
         {
-            throw new NotImplementedException();
+            _session.SaveChanges();
         }
 
         public void RollBack()
         {
-            throw new NotImplementedException();
+            //do nothing more to do, don't commit and wait for the end of the session
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (_session != null)
+            {
+                _session.Dispose();
+            }
         }
     }
 }

@@ -10,5 +10,6 @@ namespace SampArch.Infrastructure.Raven
     public interface IDocumentContextFactory
     {
         IDocumentStore GetStore();
+        IDocumentSession GetSession();
     }
 }
